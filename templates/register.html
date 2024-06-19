@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/css/tags.css">
+    <link rel="stylesheet" href="/static/css/variables.css">
+    <link rel="stylesheet" href="/static/css/register.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="main-register">
+        <div class="navbar">
+            <div class="icon">
+                <h2 class="logo">Travel</h2>
+            </div>
+
+            <div class="menu">
+                <ul>
+                    <li><a href="#">HOME</a></li>
+                    <li><a href="#">SOBRE</a></li>
+                    <li><a href="#">SERVIÇOS</a></li>
+                    <li><a href="#">PORTFÓLIO</a></li>
+                    <li><a href="#">CONTATO</a></li>
+                </ul>
+            </div>
+        <div class="content-register">
+            <div class="form-register">
+                <h2>REGISTRE-SE</h2>
+                <form action="/cadastrar" id="cadastrar" method="post">
+                    <input type="text" name="nome" id="nome" placeholder="Nome" required>
+                    <input type="email" name="email" id="email" placeholder="Email" required>
+                    <input type="password" name="senha" id="senha" placeholder="Senha" required>
+                    <input type="password" name="VerificarSenha" id="VerificarSenha" placeholder="Repita Senha" required>
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            <div class="flash">
+                                {% for message in messages %}
+                                    <p>{{ message }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    {% endwith %}
+                    <button class="btnn"><a href="#">REGISTRAR</a></button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

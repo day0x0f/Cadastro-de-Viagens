@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/variables.css">
+    <link rel="stylesheet" href="../static/css/dashboard.css">
+    <link rel="stylesheet" href="../static/css/home.css">
+    <link rel="stylesheet" href="../static/css/styles.css">
+    <title>Document</title>
+</head>
+<body><div class="area"></div><nav class="main-menu">
+    <ul>
+        <li>
+            <a href="{{url_for('home')}}">
+                <i class="fa fa-home fa-2x"></i>
+                <span class="nav-text">
+                   Home
+                </span>
+            </a>
+          
+        </li>
+        <li class="has-subnav">
+            <a href="{{url_for('home')}}">
+                <i class="fa fa-globe fa-2x"></i>
+                <span class="nav-text">
+                    Exibir Viagens
+                </span>
+            </a>
+            
+        </li>
+        <li class="has-subnav">
+            <a href="{{url_for('cadastrarViagem')}}">
+               <i class="fa fa-plus fa-2x"></i>
+                <span class="nav-text">
+                    Adicionar viagens
+                </span>
+            </a>
+            
+
+  
+    </ul>
+
+    <ul class="logout">
+        <li>
+            <form action="/logout" method="POST">
+                <input type="hidden" name="logout">
+                <button class="button" id="button-logout">
+                    <a href="#" style="color: white;">
+                        <i class="fa fa-power-off fa-2x"></i>
+                        <span class="nav-text">
+                            
+                                <strong>Logout</strong>
+                        
+                        </span>
+                    </a>
+             </button>
+            </form>
+        </li>  
+    </ul>
+</nav>
+
+    <section class="section">
+        <div class="tittle">
+            <div class="back">
+                <h1>Viagens Cadastradas:</h1>
+                <div class="back-filtrar">
+                    <form action="/filtrarViagem" method="POST">
+                        <input type="date" name="dataFiltrada" id="dataFiltrada" placeholder="Filtro de datas">
+                        <button class="button"><strong>Filtrar Viagem</strong></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-viagens">
+                        {% for viagem in viagens %}
+                            {% if viagem.id == id%}
+                                <div class="viagens">
+                                    <div class="message">
+                                            <p><strong>Ponto de Partida: </strong> {{ viagem.start }}</p>
+                                            <p><strong>Destino: </strong> {{ viagem.end }}</p>
+                                            <p><strong>Data de Inicio: </strong> {{ viagem.dataInicial }}</p>
+                                            <p><strong>Data de Término: </strong> {{ viagem.dataFinal }}</p><br>
+                                            <p><strong>Roteiro: </strong> {{ viagem.roteiro }}</p><br>
+                                            <form action="/excluirViagem" method="POST">
+                                                <input type="hidden" name="eid" value="{{ viagem.eid }}">
+                                                <button class="button"><strong> Excluir Viagem</strong></button>
+                                            </form>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/variables.css">
+    <link rel="stylesheet" href="../static/css/dashboard.css">
+    <link rel="stylesheet" href="../static/css/home.css">
+    <link rel="stylesheet" href="../static/css/viagem.css">
+    <link rel="stylesheet" href="../static/css/styles.css">
+    <title>Document</title>
+</head>
+<body><div class="area"></div><nav class="main-menu">
+    <ul>
+        <li>
+            <a href="{{url_for('home')}}">
+                <i class="fa fa-home fa-2x"></i>
+                <span class="nav-text">
+                   Home
+                </span>
+            </a>
+          
+        </li>
+        <li class="has-subnav">
+            <a href="{{url_for('home')}}">
+                <i class="fa fa-globe fa-2x"></i>
+                <span class="nav-text">
+                    Exibir Viagens
+                </span>
+            </a>
+            
+        </li>
+        <li class="has-subnav">
+            <a href="{{url_for('cadastrarViagem')}}">
+               <i class="fa fa-plus fa-2x"></i>
+                <span class="nav-text">
+                    Adicionar viagens
+                </span>
+            </a>
+            
+
+  
+    </ul>
+
+    <ul class="logout">
+        <li>
+           <a href="#">
+                 <i class="fa fa-power-off fa-2x"></i>
+                <span class="nav-text">
+                    Logout
+                </span>
+            </a>
+        </li>  
+    </ul>
+</nav>
+
+    <section class="section">
+        <div class="content-register">
+            <div class="form-register">
+                <h2>Cadastrar Viagem</h2>
+                <form action="/registrarViagem" id="cadastrar" method="post">
+                    <input type="text" name="start" id="start" placeholder="Lugar de início" required>
+                    <input type="text" name="end" id="end" placeholder="Destino Final" required>
+                    <input type="date" name="dataInicial" id="data" placeholder="Data de ínicio" required>
+                    <input type="date" name="dataFinal" id="data-final" placeholder="Data de Término" required>
+                    <textarea name="roteiro" id="message" cols="15" rows="5" placeholder="Roteiro da viagem"></textarea>
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            <div class="flash">
+                                {% for message in messages %}
+                                    <p>{{ message }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    {% endwith %}
+                    <button class="btnn"><a href="#">Cadastrar Viagem</a></button>
+                </form>
+            </div>
+        </div>
+        <div class="container-viagens"></div>
+    </section>
+
+</body>
+</html>
